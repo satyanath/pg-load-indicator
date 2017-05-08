@@ -5,7 +5,7 @@
   <style>
   </style>
   <template>
-      <iron-signals on-iron-pg-load-indicator-record="receiveMessage"></iron-signals>
+      <iron-signals on-iron-signal-pg-load-indicator-record="receiveMessage"></iron-signals>
   </template>
 </dom-module>
 <script>
@@ -29,7 +29,7 @@
         checkPageLoad: function() {
             var allDone = true;
                 for (i = 0; i < this.eventList.length; i++) {
-                  if (!loadedEventsList[i]) {
+                  if (!this.loadedEventsList[i]) {
                     allDone = false;
                     break;
                   }  
@@ -42,7 +42,7 @@
         eventListChanged: function() {
             if ((this.eventList != null) && (this.eventList.length != 0)) {
                 this.loadedEventsList.length = this.eventList.length;
-                this.loadedEventsList = this.loadedEventList.splice(0, this.eventList.length);
+                this.loadedEventsList = this.loadedEventsList.splice(0, this.eventList.length);
                 for (i = 0; i < this.eventList.length; i++) {
                     this.loadedEventsList[i] = false;
                 }
