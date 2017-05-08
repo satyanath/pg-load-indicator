@@ -1,0 +1,22 @@
+{
+  "name": "pg-load-indicator",
+  "homepage": "https://github.com/satyanath/pg-load-indicator",
+  "authors": [
+    "Satyanath Shankaran <satyanath@yahoo.com>"
+  ],
+  "description": "A polymer component to track loading of various pieces of the page and signal at the end of loading",
+  "main": "pg-load-indicator.html",
+  "keywords": [
+    "page",
+    "load",
+    "indicator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

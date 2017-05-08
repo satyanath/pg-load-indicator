@@ -1,0 +1,63 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-signals/iron-signals.html">
+
+<dom-module id="pg-load-indicator">
+  <style>
+  </style>
+  <template>
+      <iron-signals on-iron-pg-load-indicator-record="receiveMessage"></iron-signals>
+  </template>
+</dom-module>
+<script>
+    Polymer({
+        is: "pg-load-indicator",
+        ready: function () {
+        },
+        attached:function() {
+
+        },
+        receiveMessage: function(event) {
+            var evt = event.detail.event;
+            for (i = 0; i < this.eventList.length; i++) {
+                if (this.eventList[i] == evt) {
+                    this.loadedEventsList[i] = true;
+                    break;
+                }
+            }
+            this.checkPageLoad();
+        },
+        checkPageLoad: function() {
+            var allDone = true;
+                for (i = 0; i < this.eventList.length; i++) {
+                  if (!loadedEventsList[i]) {
+                    allDone = false;
+                    break;
+                  }  
+                }
+            if (allDone) {
+                this.fire('iron-signal', {name: 'page-loaded', data: {}});
+            }
+
+        },
+        eventListChanged: function() {
+            if ((this.eventList != null) && (this.eventList.length != 0)) {
+                this.loadedEventsList.length = this.eventList.length;
+                this.loadedEventsList = this.loadedEventList.splice(0, this.eventList.length);
+                for (i = 0; i < this.eventList.length; i++) {
+                    this.loadedEventsList[i] = false;
+                }
+            }
+        },
+        properties: {
+            eventList: {
+                type: Array,
+                value: [],
+                observer: "eventListChanged"
+            },
+            loadedEventsList: {
+                type: Array,
+                value:[]
+            },
+        }
+    });
+</script>
